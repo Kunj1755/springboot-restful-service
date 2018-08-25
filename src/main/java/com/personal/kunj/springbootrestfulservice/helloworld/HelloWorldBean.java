@@ -1,4 +1,4 @@
-package com.personal.kunj.springbootrestfulservice;
+package com.personal.kunj.springbootrestfulservice.helloworld;
 
 public class HelloWorldBean {
 
