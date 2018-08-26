@@ -10,6 +10,11 @@ public class User {
 
 	private Date birthDate;
 
+	// Must have for REST to convert json data to a java object
+	protected User() {
+
+	}
+
 	public User(Integer id, String name, Date birthDate) {
 		super();
 		this.id = id;
