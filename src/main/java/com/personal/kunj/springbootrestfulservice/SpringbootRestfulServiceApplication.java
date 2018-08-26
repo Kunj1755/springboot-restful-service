@@ -5,9 +5,8 @@ import java.util.Locale;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 @SpringBootApplication
 public class SpringbootRestfulServiceApplication {
@@ -18,15 +17,22 @@ public class SpringbootRestfulServiceApplication {
 
 	@Bean
 	public LocaleResolver localeResolver() {
-		SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+		// After using AcceptHeaderLocaleResolver, we will not need to configure locale
+		// as request parameter/header in every controller method
+		AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
 		localeResolver.setDefaultLocale(Locale.US);
 		return localeResolver;
 	}
 
-	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
-		resourceBundleMessageSource.setBasename("messages");
-		return resourceBundleMessageSource;
-	}
+	/*
+	 * You can replace this code with property "spring.messages.basename=messages"
+	 * in application.properties
+	 */
+	/*
+	 * @Bean public ResourceBundleMessageSource messageSource() {
+	 * ResourceBundleMessageSource resourceBundleMessageSource = new
+	 * ResourceBundleMessageSource();
+	 * resourceBundleMessageSource.setBasename("messages"); return
+	 * resourceBundleMessageSource; }
+	 */
 }
