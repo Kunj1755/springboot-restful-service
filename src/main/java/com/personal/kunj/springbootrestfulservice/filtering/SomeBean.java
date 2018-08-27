@@ -1,11 +1,19 @@
 package com.personal.kunj.springbootrestfulservice.filtering;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+// Other way to ignore fields in the response
+@JsonIgnoreProperties(value = { "field1" })
 public class SomeBean {
 
 	private String field1;
 
 	private String field2;
 
+	// Let's say this field is secure and we do not want to pass this field in the
+	// response
+	@JsonIgnore
 	private String field3;
 
 	public SomeBean(String field1, String field2, String field3) {
